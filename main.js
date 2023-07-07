@@ -15,7 +15,7 @@ document.querySelector('#app').innerHTML = `
     </a>
     <h1>Hello ${yourName}!</h1>
     <h1>Very Good</h1>
-    <h1>wan thar lite tar</h1>
+    <h1>Dev ka par</h1>
     <div class="card">
       <button id="counter" type="button"></button>
     </div>
