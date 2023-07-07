@@ -30,6 +30,7 @@ jobs:
           path: ./dist
 
   deploy:
+    steps:
       - name: Upload Files
         uses: Creepios/sftp-action@v1.0.3
         with:
