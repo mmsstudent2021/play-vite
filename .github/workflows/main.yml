@@ -1,4 +1,4 @@
-name: "Vite Play Deployment"
+name: Deploy
 
 on:
   push:
@@ -11,37 +11,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Apt Update
-        run: sudo apt update
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       - name: Setup Node
-        run: sudo apt install nodejs
+        uses: actions/setup-node@v3
 
-      - name: check node version
-        run: node -v
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
 
       - name: Build project
-        run: npm i
-
-      - name: Build Finish
         run: npm run build
-        
 
-  # deploy:
-  #   name: Deploy
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/main'
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-files
+          path: ./dist
 
-  #   steps:
-  #     - name: Download artifact
-  #       uses: actions/download-artifact@v3
-  #       with:
-  #         name: production-files
-  #         path: ./dist
-
-  #     - name: Deploy to GitHub Pages
-  #       uses: peaceiris/actions-gh-pages@v3
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         publish_dir: ./dist
+  deploy:
+      - name: Upload Files
+            id: upload
+            uses: Creepios/sftp-action@v1.0.3
+            with:
+              host: '128.199.70.169'
+              port: 22
+              username: 'root'
+              password: 'mms2023IT'
+              localPath: './dist'
+              remotePath: './var/www/b.com'
