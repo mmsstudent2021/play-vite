@@ -28,7 +28,7 @@ jobs:
         with:
           name: production-files
           path: ./dist
-          
+
       - name: Upload Files
         uses: Creepios/sftp-action@v1.0.3
         with:
@@ -37,4 +37,4 @@ jobs:
           username: 'root'
           password: 'mms2023IT'
           localPath: './dist'
-          remotePath: './var/www/b.com'
+          remotePath: '/var/www/b.com'
