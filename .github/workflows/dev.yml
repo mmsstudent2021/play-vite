@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
           name: production-files
           path: ./dist
 
-      - name: Upload Files Server 1
+      - name: Upload Files Server 2
         uses: Creepios/sftp-action@v1.0.3
         with:
           host: '128.199.70.169'
@@ -37,4 +37,4 @@ jobs:
           username: 'root'
           password: 'mms2023IT'
           localPath: './dist'
-          remotePath: '/var/www/b.com'
+          remotePath: '/var/www/c.com'
